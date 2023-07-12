@@ -1,4 +1,4 @@
 # CryptoClustering
-Crypto Currency Clustering Exercise using unsupervised machine learning.
+Cryptocurrency clustering exercise using unsupervised machine learning.
 
-All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClustering folder. Source data csv exists inside the Resourdces folder.
+All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClustering folder. Source data (crypto_market_data.csv) exists inside the Resources folder.
