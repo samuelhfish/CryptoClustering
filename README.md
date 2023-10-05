@@ -40,4 +40,4 @@ All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClust
 
 <img width="565" alt="Screenshot 2023-10-05 at 4 05 37 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/dee147a5-8d62-4bf0-932d-14426cefbce6"><br/> 
 
-<img width="921" alt="Screenshot 2023-10-05 at 4 05 54 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/eff670a6-b88d-483b-97d0-1ddc6393979c"><br/> 
+<img width="921" alt="Screenshot 2023-10-05 at 4 11 29 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/f12b1c1e-3790-4b38-bb3b-88a819fc71d4"><br/> 
