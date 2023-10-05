@@ -25,6 +25,9 @@ All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClust
 
   * **Answer:** This is the same as with our original data.
 
+<img width="127" alt="Screenshot 2023-10-05 at 4 04 08 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/b6afcf70-d3de-49d7-9ce4-dabb5dd2b413"><br/> 
+
+<img width="562" alt="Screenshot 2023-10-05 at 4 04 33 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/3ecfe508-1dc3-44bf-a3d4-adb02b447519"><br/> 
 
 
 
