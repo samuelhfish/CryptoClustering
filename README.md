@@ -25,7 +25,7 @@ All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClust
 
   * **Answer:** This is the same as with our original data.
 
-<img width="127" alt="Screenshot 2023-10-05 at 4 04 08 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/b6afcf70-d3de-49d7-9ce4-dabb5dd2b413"><br/> 
+<img width="180" alt="Screenshot 2023-10-05 at 4 04 08 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/b6afcf70-d3de-49d7-9ce4-dabb5dd2b413"><br/> 
 
 <img width="562" alt="Screenshot 2023-10-05 at 4 04 33 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/3ecfe508-1dc3-44bf-a3d4-adb02b447519"><br/> 
 
@@ -37,3 +37,7 @@ All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClust
   * **Question:** After visually analyzing the cluster analysis results, what is the impact of using fewer features to cluster the data using K-Means?
 
   * **Answer:** Using fewer features allows us to more easily identify outliers. Fewer features also lowered the inertia on our elbow curve.
+
+<img width="565" alt="Screenshot 2023-10-05 at 4 05 37 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/dee147a5-8d62-4bf0-932d-14426cefbce6"><br/> 
+
+<img width="921" alt="Screenshot 2023-10-05 at 4 05 54 PM" src="https://github.com/samuelhfish/CryptoClustering/assets/125224990/eff670a6-b88d-483b-97d0-1ddc6393979c"><br/> 
