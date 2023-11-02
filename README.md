@@ -1,5 +1,13 @@
 # CryptoClustering
-Cryptocurrency clustering exercise using unsupervised machine learning.
+Cryptocurrency clustering demo using unsupervised machine learning. The goal of this exercise is to:
+
+- prepare data using StandardScaler from scikit learn
+- find the best value for k uisng the scaled dataframe
+- cluster the Cryptocurrencies with K-means using the scaled data
+- optimize clusters using Principal Component Analysis (PCA)
+- find best value for k with PCA data
+- cluster again with K-means and PCA data
+- compare results
 
 All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClustering folder. Source data (crypto_market_data.csv) exists inside the Resources folder.
 
