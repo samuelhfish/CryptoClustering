@@ -1,5 +1,7 @@
 # CryptoClustering
-Cryptocurrency clustering demo using unsupervised machine learning. The goal of this exercise is to:
+Demo using unsupervised machine learning, K-means, clustering and PCA (Principal Component Analysis) to predict if cryptocurrencies are affected by 24-hour or 7-day price changes.
+
+The goal of this exercise is to:
 
 - prepare data using StandardScaler from scikit learn
 - find the best value for k uisng the scaled dataframe
