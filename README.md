@@ -11,7 +11,7 @@ The goal of this exercise is to:
 - cluster again with K-means and PCA data
 - compare results
 
-All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClustering folder. Source data (crypto_market_data.csv) exists inside the Resources folder.
+All code exists in the Crypto_Clustering Jupyter Notebook inside the CryptoClustering folder. Source data (crypto_market_data.csv) exists inside the 'Resources' folder(CryptoClustering > Resources).
 
 ```
 After importing depedencies we have our DataFrame, df_market_data
@@ -307,4 +307,4 @@ df_market_data_predictions_plot + df_pca_predictions_plot
 ![Screenshot 2023-12-18 at 10 36 52 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/d08d753d-d2c6-4870-a9a5-d872499b1254)
 
 #### Analysis:
-After visually analyzing the cluster analysis results, we see that using fewer features allows us to more easily identify outlier. Fewer features also lowered the inertia on our elbow curve.
+After visually assessing the cluster analysis results, we see that using fewer features allows us to more easily identify outliers. Fewer features also lowered the inertia on our elbow curve.
