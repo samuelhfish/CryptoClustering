@@ -155,3 +155,156 @@ df_market_data_predictions_plot = df_market_data_predictions.hvplot.scatter(
 df_market_data_predictions_plot
 ```
 ![Screenshot 2023-12-18 at 8 09 47 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/386f6189-fd1f-4399-8395-70ba19ad7c3d)
+
+```python
+# Optimize Clusters with Principal Component Analysis.
+# Create a PCA model instance and set `n_components=3`.
+pca = PCA(n_components=3)
+
+# Use the PCA model with `fit_transform` to reduce to 
+# three principal components.
+market_data_pca = pca.fit_transform(df_market_data_transformed)
+
+# View the first five rows of the array. 
+market_data_pca[:5]
+```
+```
+array([[-0.60066733,  0.84276006,  0.46159457],
+       [-0.45826071,  0.45846566,  0.95287678],
+       [-0.43306981, -0.16812638, -0.64175193],
+       [-0.47183495, -0.22266008, -0.47905316],
+       [-1.15779997,  2.04120919,  1.85971527]])
+```
+```python
+# Retrieve the explained variance to determine how much information 
+# can be attributed to each principal component.
+pca.explained_variance_ratio_
+```
+```
+array([0.3719856 , 0.34700813, 0.17603793])
+```
+Total explained variance of the three princiapl comonents is .895
+```python
+# Create a new DataFrame with the PCA data.
+df_pca = pd.DataFrame(market_data_pca, columns=["PCA1", "PCA2", "PCA3"])
+
+# Copy the crypto names from the original data
+df_pca["coin_id"] = df_market_data.index
+
+# Set the coinid column as index
+df_pca = df_pca.set_index("coin_id")
+
+# View the first five rows of the DataFrame. 
+df_pca.head(5)
+```
+![Screenshot 2023-12-18 at 10 25 42 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/57c01d01-c6a3-4ccb-b371-3468de20e6a6)
+```python
+# Find the Best Value for k Using the PCA Data
+# Create a list with the number of k-values from 1 to 11
+k = list(range(1, 11))
+
+# Create an empty list to store the inertia values
+inertia = []
+
+# Create a for loop to compute the inertia with each possible value of k
+for i in k:
+    # Inside the loop:
+    # 1. Create a KMeans model using the loop counter for the n_clusters
+    k_model = KMeans(n_clusters=i, random_state=1)
+    # 2. Fit the model to the data using `df_market_data_pca`
+    k_model.fit(df_pca)
+    # 3. Append the model.inertia_ to the inertia list
+    inertia.append(k_model.inertia_)
+
+# Create a dictionary with the data to plot the Elbow curve
+elbow_data_pca = {"k": k, "inertia": inertia}
+
+# Create a DataFrame with the data to plot the Elbow curve
+df_elbow_pca = pd.DataFrame(elbow_data_pca)
+
+df_elbow_pca.head()
+```
+![Screenshot 2023-12-18 at 10 26 35 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/564c9584-17bd-4dca-b57d-adfaeca445e3)
+```python
+# Plot a line chart with all the inertia values computed with 
+# the different values of k to visually identify the optimal value for k.
+df_elbow_pca_plot = df_elbow_pca.hvplot.line(
+    x="k", 
+    y="inertia", 
+    title="Elbow Curve", 
+    xticks=k
+)
+
+df_elbow_pca_plot
+```
+![Screenshot 2023-12-18 at 10 27 56 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/1b8b8b51-bec1-4a51-a92f-df03a69fd88b)
+
+It looks like 4 is still the best value for 'k' when using the PCA data which is the same as with our original data.
+
+Let's now repeat the clustering with K-means using the PCA data.
+
+```python
+# Initialize the K-Means model using the best value for k
+model_pca = KMeans(n_clusters=4)
+
+# Fit the K-Means model using the PCA data
+model_pca.fit(df_pca)
+```
+```
+KMeans(n_clusters=4)
+```
+```python
+# Predict the clusters to group the cryptocurrencies using the PCA data
+k_4_pca = model_pca.predict(df_pca)
+
+# Print the resulting array of cluster values.
+k_4_pca
+```
+```
+array([1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 1,
+       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 2, 1, 0, 0, 3, 0, 0, 0, 0],
+      dtype=int32)
+```
+```python
+# Create a copy of the DataFrame with the PCA data
+df_pca_predictions = df_pca.copy()
+
+# Add a new column to the DataFrame with the predicted clusters
+df_pca_predictions["cluster_pca"] = k_4_pca
+
+# Display sample data
+df_pca_predictions.head()
+```
+![Screenshot 2023-12-18 at 10 30 21 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/3069441b-f326-4723-b075-024228aee69c)
+```python
+# Create a scatter plot using hvPlot by setting 
+# `x="PC1"` and `y="PC2"`. 
+# Color the graph points with the labels found using K-Means and 
+# add the crypto name in the `hover_cols` parameter to identify 
+# the cryptocurrency represented by each data point.
+df_pca_predictions_plot = df_pca_predictions.hvplot.scatter(
+    x="PCA1",
+    y="PCA2",
+    by="cluster_pca",
+    hover_cols = ["coin_id"]
+)
+
+df_pca_predictions_plot
+```
+![Screenshot 2023-12-18 at 10 31 32 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/132920cb-aa33-4a52-bd26-1c56fd808b24)
+
+Now we visualize and compare the results by contrasting the outcome with and without using the optimization techniques.
+```python
+# Composite plot to contrast the Elbow curves
+df_elbow_plot * df_elbow_pca_plot
+```
+![Screenshot 2023-12-18 at 10 35 29 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/b9e6e11e-b682-4099-a8b4-710369d21a73)
+```python
+# Composite plot to contrast the clusters
+df_market_data_predictions_plot + df_pca_predictions_plot
+```
+![Screenshot 2023-12-18 at 10 36 41 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/f44ed45d-db00-4dfc-b498-0d904b567a19)
+![Screenshot 2023-12-18 at 10 36 52 PM](https://github.com/samuelhfish/CryptoClustering/assets/125224990/d08d753d-d2c6-4870-a9a5-d872499b1254)
+
+#### Analysis:
+After visually analyzing the cluster analysis results, we see that using fewer features allows us to more easily identify outlier. Fewer features also lowered the inertia on our elbow curve.
